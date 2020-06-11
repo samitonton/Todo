@@ -1,0 +1,10 @@
+version: "3.7"
+services: #一個一個サービスを定義する
+  node_dev: #マシンの名前
+    build: container/node_dev #何を元にマシンを立てるか、どこで立てるか
+    working_dir: /node_dev #dockerを動かすディレクトリ
+    volumes: #macのディレクトリとdockerのディレクトリを共有する設定、左がマック右がdocker
+      - ./nuxt_app:/node_dev:cached
+    ports:
+      - "3000:3000"
+    command: vue serve --port 3000 app.vue #dockerを立ち上げた時に実行されるコマンド
